@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import RestAPI from './components/RestAPI'
 import Header from './components/Header';
 import Board from './components/Board';
+import Modal from './components/Modal';
 import './styles/App.css';
 
 class App extends Component {
@@ -12,7 +13,10 @@ class App extends Component {
       boardId : RestAPI.boardID,
       boardData: {},
       isData : false,
-      lists : []
+      lists : [],
+      modalShow : false,
+      modalChildren : [],
+      cardTitle : ""
     }
     this.getData();
     this.getLists();
@@ -39,6 +43,35 @@ class App extends Component {
     .then(newList => this.setState({lists : this.state.lists.concat(newList)}))
     .catch(err => console.log(err))
   }
+  deleteList = (id) =>{
+    RestAPI.deleteList(id)
+    .then(res => res.json())
+    .then(deletedList => this.setState({lists : this.state.lists.filter(list => list.id !== id)}))
+    .catch(err => console.log(err))
+  }
+  checkList = (cardID) =>{
+    RestAPI.getCheckList(cardID)
+    .then(res => res.json())
+    .then(checkLists => this.setState({modalChildren : checkLists, modalShow : true}))
+  }
+  addCheckList = (cardID, checkListName) =>{
+    RestAPI.AddCheckList(cardID, checkListName)
+    .then(res => res.json())
+    .then(data => (this.checkList(cardID)))
+  }
+  deleteCheckList = (checkListId, cardID) =>{
+    RestAPI.deleteCheckList(checkListId)
+    .then(res => res.json())
+    .then(data => this.checkList(cardID))
+  }
+  addItemToCheckList = (checkListId, checkListItemName) =>{
+    RestAPI.addItemToCheckList(checkListId, checkListItemName)
+    .then(res  => res.json())
+    .then(data => console.log("none"))
+  }
+  close = () =>{
+    this.setState({modalShow : false})
+  }
   render() {
     if (!this.state.isData) {
       return(
@@ -49,11 +82,24 @@ class App extends Component {
     let bgimage = {
       backgroundImage: `url('${prefs.backgroundImage}')`,
     };
-    console.log(this.state.lists)
     return (
       <div style={bgimage} className="App">
         <Header />  
-        <Board name={name} boardID={this.state.boardId} lists={this.state.lists} addNewList={this.addNewList}/>
+        <Board name={name} 
+        boardID={this.state.boardId} 
+        lists={this.state.lists} 
+        addNewList={this.addNewList} 
+        deleteList={this.deleteList}
+        checkList={this.checkList}
+        />
+        <Modal show={this.state.modalShow} 
+        children={this.state.modalChildren} 
+        cardTitle={this.state.cardTitle}
+        close={this.close}
+        addCheckList={this.addCheckList}
+        deleteCheckList={this.deleteCheckList}
+        addItemToCheckList={this.addItemToCheckList}
+        />
       </div>
     );
   }

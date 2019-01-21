@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import BoardList from './BoardLists';
-import RestAPI from './RestAPI';
 
 class BoardContent extends Component{
     constructor(props){
@@ -36,18 +35,17 @@ class BoardContent extends Component{
     }
     render(){
         let lists = this.props.lists
-        console.log(lists)
         return(
             <div className="boardContent">
-                {lists.map(eachlist => <BoardList list={eachlist}/> )}
+                {lists.map(eachlist => <BoardList list={eachlist} deleteList={this.props.deleteList} checkList={this.props.checkList}/> )}
 
                 <div className="board-cards new-list">
                     {/* {this.state.newListvisible ? <h1></h1> : null} */}
                     <button className="add-new-list" style={this.state.newListvisible} onClick={this.addNewList}>+ Add another List</button>
                     <form className="new-list-form" style={this.state.formVisible} onSubmit={this.listSubmit}>
-                        <input className="new-list-name" value={this.state.listName} autoFocus="true"  onChange={this.addList} placeholder="Enter a list title ..."></input>
+                        <input className="new-list-name" value={this.state.listName} autoFocus={true}  onChange={this.addList} placeholder="Enter a list title ..."></input>
                         <button className="new-list-add" onClick={this.listSubmit}>Add List</button>
-                        <button className="new-list-close" onClick={this.closeAddList}>X</button>
+                        <button className="new-list-close" onClick={this.closeAddList}>&#128465;</button>
                     </ form>
                     
                 </div>

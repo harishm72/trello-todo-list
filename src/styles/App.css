@@ -1,3 +1,102 @@
+body::-webkit-scrollbar {
+  width: 1em;
+}
+button:hover{
+  cursor: pointer;
+}
+body::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+}
+
+body::-webkit-scrollbar-thumb {
+background-color: darkgrey;
+outline: 1px solid slategrey;
+}
+
+/* modal css */
+.modal-wrapper {
+  background: lightgrey;
+  border: 1px solid #d0cccc;
+  border-radius: 4px;
+  box-shadow: 0 5px 8px 0 rgba(0,0,0,0.2), 0 7px 20px 0 rgba(0,0,0,0.17);
+  margin:0 auto;
+  transition: all .8s;
+  width: 60%;
+}
+
+.modal-header {
+  height: 40px;
+  line-height: 40px;
+  padding: 5px 20px;
+  text-align: right;
+}
+
+.modal-header h3 {
+  color: black;
+  float: left;
+  margin: 0;
+  padding: 0;
+}
+
+.modal-body {
+  padding: 10px 15px;
+  text-align: center;
+}
+
+.modal-footer {
+  background: #263238;
+  height: 35px;
+  padding: 15px;
+}
+
+.close-modal-btn {
+  color:black;
+  cursor: pointer;
+  float: right;
+  font-size: 30px;
+  margin: 0;
+}
+
+.close-modal-btn:hover {
+  color: black;
+}
+
+.btn-cancel, .btn-continue {
+  background: coral;
+  border: none;
+  color: white;
+  cursor: pointer;
+  font-weight: bold;
+  outline: none;
+  padding: 10px;
+}
+
+.btn-cancel {
+  background-color: #b71c1c;
+  float: left;
+}
+
+.btn-continue {
+  background-color: #1b5e20;
+  float: right;
+}
+
+.back-drop {
+  background-color: rgba(48, 49, 48, 0.42);
+  height: 100%;
+  position: fixed;
+  transition: all 1.3s;
+  width: 100%;
+}
+
+.open-modal-btn {
+  margin: 15px;
+  padding: 10px;
+  font-weight: bold;
+}
+/* modal css ends here */
+
 .App {
   overflow: 'hidden';
   background-position: 50% center ;
@@ -6,6 +105,7 @@
 }
 .app-header{
   background: rgba(0,0,0,.35);
+  height: 2.5em;
   text-align: center;
 }
 .board-header{
@@ -24,6 +124,8 @@
 }
 .boardContent{
   display: flex;
+  position: absolute;
+  margin: 4px;
 }
 .board-cards{
   background-color: #dfe3e6;
@@ -37,16 +139,37 @@
   vertical-align: top;
   white-space: nowrap;
 }
+.add-scroll{
+  overflow-y: auto;
+  max-height: 380px;
+}
+.list-head:hover, .card:hover{
+  cursor: pointer;
+}
+.list-head:hover .delete-list, .card:hover .delete-card{
+  visibility: visible;
+  cursor: pointer;
+}
 .card{
   padding: 8px;
   margin: 8px 0;
-  height: 3em;
+  height: auto;
+  display: flex;
+  justify-content: space-between;
   background-color: white;
   border-radius: 4px;
   box-shadow: 0 1px 0 rgba(9,45,66,.25);
 }
-.new-list:hover{
-  text-decoration: underline; 
+.card-name{
+  margin: 0;
+}
+.add-new-list:hover, .add-new-card:hover{
+  text-decoration: underline;
+  cursor: pointer;
+}
+.list-head{
+  display: flex;
+  justify-content: space-between;
 }
 .new-list{
   padding: 0;
@@ -57,7 +180,7 @@
   color: rgb(255,255,255, 0.7);
   background-color: rgb(0,0,0, 0.1);
 }
-.add-new-list, .add-new-card{
+.add-new-list{
   padding: 0;
   width: -webkit-fill-available;
   height: 36px;
@@ -65,7 +188,16 @@
   font-size: medium;
   border-radius: 4px;
   color: rgb(255,255,255, 0.7);
-  background-color: rgb(0,0,0, 0.1);
+  background-color: rgb(0,0,0, 0.5);
+}
+.add-new-card{
+  width: -webkit-fill-available;
+  border: none;
+  font-size: medium;
+  border-radius: 4px;
+  background-color: transparent;
+  text-align: left;
+  color: #6b808c;
 }
 .new-list-form , .new-card-form{
   display: flex;
@@ -84,12 +216,17 @@
   border: none;
   border-radius: 4px;
   margin: 0 8px;
+  height: 1.5em;
 }
 .new-list-close, .new-card-close{
   color: white;
   background-color: green;
   border: none;
   border-radius: 4px;
+  align-self: baseline;
+}
+.add-card{
+  padding-top: 0.5em; 
 }
 .add-card-button{
   background-color: transparent;
@@ -97,4 +234,69 @@
 }
 .add-card-button:hover{
   text-decoration: underline;
+}
+.delete-list, .delete-card{
+  height: fit-content;
+  color: white;
+  background-color: transparent;
+  border: none;
+  border-radius: 4px;
+  visibility: hidden;
+  font-size: 1em;
+}
+.card-title{
+  margin: 0;
+  font-size: 1sem;
+  max-width: 200px;
+  word-wrap: break-word;
+  white-space: initial;
+}
+
+.check-list{
+  margin: 1em 0;
+}
+.check-list-item{
+  display: flex;
+  margin: 8px;
+}
+.check-list-item-name{
+  margin: 0;
+  font-size: 1em;
+}
+.check-list-checkbox{
+  width: 16px;
+  height: 16px;
+}
+.add-check-list{
+  height: 24px;
+  border: none;
+  background-color: rgb(0,0,0,0.1);
+  color: black;
+  border-radius: 8px;
+}
+.checklist-head{
+  display: flex;
+  justify-content: space-between;
+}
+.checklist-name{
+  margin: 0;
+}
+.add-checklist-item{
+  border: none;
+  background-color: lightgray;
+  width: 90%;
+  height: 1.25em;
+  font-size: 1em;
+}
+.delete-checklist{
+  background-color: transparent;
+  border: none;
+  font-size: 16px;
+}
+.delete-checklist-item{
+  position: fixed;
+  right: 16px;
+  background-color: transparent;
+  border: none;
+  font-size: 16px;
 }

@@ -9,7 +9,12 @@ class Board extends Component{
         return(
             <div className="board">
                 <BoardHeader name={name} id={id}/>
-                <BoardContent name={name} id={id} lists={lists} addNewList={this.props.addNewList}/>
+                <BoardContent name={name} id={id} 
+                    lists={lists} 
+                    addNewList={this.props.addNewList} 
+                    deleteList={this.props.deleteList}
+                    checkList={this.props.checkList}
+                    />
             </div>
         )
     }

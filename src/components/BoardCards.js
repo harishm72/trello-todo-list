@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
+import Card from './Card';
 import RestAPI from './RestAPI';
+
 class BoardCards extends Component{
 
     constructor(props){
@@ -15,13 +17,13 @@ class BoardCards extends Component{
         this.getCards(this.props.listId)
     }
     getCards = (listId) =>{
-            RestAPI.getCards(listId)
-            .then(res => res.json())
-            .then(data => 
-                this.setState({
-                cards : data,
-                isCards : true
-            }))
+        RestAPI.getCards(listId)
+        .then(res => res.json())
+        .then(data => 
+            this.setState({
+            cards : data,
+            isCards : true
+        }))
     }
     addNewCard = () =>{
         this.setState({newCardvisible : {display : "none"}, formVisible : {"display" : "flex"}})
@@ -45,25 +47,28 @@ class BoardCards extends Component{
 
         }
     }
+    deleteCard = (id) =>{
+       // this.setState({cards : this.state.cards.filter(card => card.id !== id)})
+        RestAPI.deleteCard(id)
+        .then(res => res.json())
+        .then(deletedCard => this.setState({cards : this.state.cards.filter(card => card.id !== id)}))
+    }
     render(){
         if(this.state.isCards){
             let listId = this.props.listId;
             return(
                 <div>
-                    {this.state.cards.map(eachcard =><div id={eachcard['id']} className="card">{eachcard.name}</div>)}
+                    <div className="add-scroll">
+                        {this.state.cards.map(eachcard =>
+                            (<Card card={eachcard} deleteCard={this.deleteCard} checkList={this.props.checkList}/>))}
+                    </div>
                     <div className="add-card">
                         <button id={listId} style={this.state.newCardvisible} onClick={this.addNewCard}className="add-new-card"> + Add a card</button>
                         <form className="card new-card-form" onSubmit={this.cardSubmit} style={this.state.formVisible}>
                             <input className="new-card-name" value={this.state.cardName} onChange={this.addCard} placeholder="Enter a title for this card..."></input>
                             <button className="new-card-add" onClick={this.cardSubmit}>Add Card</button>
-                            <button className="new-card-close" onClick={this.closeAddCard}>X</button>
+                            <button className="new-card-close" onClick={this.closeAddCard}>&#128465;</button>
                         </form>
-                        {/* <button className="add-new-list" style={this.state.newListvisible} onClick={this.addNewList}>+ Add another List</button>
-                    <form className="new-list-form" style={this.state.formVisible} onSubmit={this.listSubmit}>
-                        <input className="new-list-name" value={this.state.listName} onChange={this.addList} placeholder="Enter a list title ..."></input>
-                        <button className="new-list-add" onClick={this.listSubmit}>Add List</button>
-                        <button className="new-list-close" onClick={this.closeAddList}>X</button>
-                    </ form> */}
                     </div>
                 </div> )}
         else return( <p>Loading......</p>)
