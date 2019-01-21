@@ -43,7 +43,7 @@ class BoardContent extends Component{
                     {/* {this.state.newListvisible ? <h1></h1> : null} */}
                     <button className="add-new-list" style={this.state.newListvisible} onClick={this.addNewList}>+ Add another List</button>
                     <form className="new-list-form" style={this.state.formVisible} onSubmit={this.listSubmit}>
-                        <input className="new-list-name" value={this.state.listName} autoFocus={true}  onChange={this.addList} placeholder="Enter a list title ..."></input>
+                        <input className="new-list-name" value={this.state.listName} autofocus="true"  onChange={this.addList} placeholder="Enter a list title ..."></input>
                         <button className="new-list-add" onClick={this.listSubmit}>Add List</button>
                         <button className="new-list-close" onClick={this.closeAddList}>&#128465;</button>
                     </ form>

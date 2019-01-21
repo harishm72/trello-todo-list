@@ -64,10 +64,20 @@ class App extends Component {
     .then(res => res.json())
     .then(data => this.checkList(cardID))
   }
-  addItemToCheckList = (checkListId, checkListItemName) =>{
+  addItemToCheckList = (checkListId, checkListItemName, cardID) =>{
     RestAPI.addItemToCheckList(checkListId, checkListItemName)
     .then(res  => res.json())
-    .then(data => console.log("none"))
+    .then(data => this.checkList(cardID))
+  }
+  deleteCheckListItem = (checkListId, checkListItemId, cardID) =>{
+    RestAPI.deleteCheckListItem(checkListId, checkListItemId)
+    .then(res => res.json())
+    .then(data =>  this.checkList(cardID))
+  }
+  updateCheckListItem = (cardID, checkListItemId, checkListId, state) =>{
+    RestAPI.updateCheckListItem(cardID, checkListItemId, checkListId, state)
+    .then(res => res.json())
+    .then(update => (this.checkList(cardID)))
   }
   close = () =>{
     this.setState({modalShow : false})
@@ -99,6 +109,8 @@ class App extends Component {
         addCheckList={this.addCheckList}
         deleteCheckList={this.deleteCheckList}
         addItemToCheckList={this.addItemToCheckList}
+        deleteCheckListItem={this.deleteCheckListItem}
+        updateCheckListItem={this.updateCheckListItem}
         />
       </div>
     );

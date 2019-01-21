@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import CheckList from './CheckList';
 import '../styles/App.css';
-import RestAPI from './RestAPI';
 
 class Modal extends Component{
     constructor(props){
@@ -36,7 +35,11 @@ class Modal extends Component{
                 <form onSubmit={this.addCheckList}>
                 <input className="add-check-list" onChange={this.checkListName} value={this.state.checkListName} placeholder=" + Add a checklist...."></input>
                 </form>
-                {checklists ? checklists.map(eachCheckList => <CheckList list={eachCheckList} deleteCheckList={this.props.deleteCheckList} addItemToCheckList={this.addItemToCheckList}/>) : null }
+                {checklists ? checklists.map(eachCheckList => <CheckList list={eachCheckList} deleteCheckList={this.props.deleteCheckList} 
+                    addItemToCheckList={this.props.addItemToCheckList}
+                    deleteCheckListItem={this.props.deleteCheckListItem}
+                    updateCheckListItem={this.props.updateCheckListItem}
+                />) : null }
             </div>
         </div>
         )

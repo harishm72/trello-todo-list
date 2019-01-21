@@ -1,12 +1,10 @@
 import React, {Component} from 'react';
 import CheckListItem from './CheckListItem';
-import RestAPI from './RestAPI';
 class CheckList extends Component{
 
     constructor(props){
         super(props)
         this.state = {
-            checkItems : this.props.list.checkItems,
             newItem : ""
         }
     }
@@ -17,25 +15,8 @@ class CheckList extends Component{
     
     addItemToCheckList = (event) =>{
         event.preventDefault();
-        RestAPI.addItemToCheckList(this.props.list.id, this.state.newItem)
-            .then(res => res.json())
-            .then(newItem => this.setState({checkItems : this.props.list.checkItems.push(newItem)}))
+        this.props.addItemToCheckList(this.props.list.id, this.state.newItem, this.props.list.idCard)
         this.setState({newItem : ""})
-    }
-    deleteCheckListItem = (checkListId, checkListItemId) =>{
-        RestAPI.deleteCheckListItem(checkListId, checkListItemId)
-        .then(res => res.json())
-        .then(newItem => this.setState({checkItems : this.props.list.checkItems = this.props.list.checkItems.filter(item =>(item['id'] !== checkListItemId))}))
-    }
-    updateCheckListItem = (idCard, id, idChecklist, status) =>{
-        RestAPI.updateCheckListItem(idCard, id, idChecklist, status)
-        .then(res => res.json())
-        .then(update => this.setState({checkItems : this.state.checkItems.map(item  => {
-            if(item['id'] === update['id']){
-                item['state'] = update['state']
-            }
-            return item
-        })}) )
     }
     render(){
         let list = this.props.list
@@ -47,10 +28,10 @@ class CheckList extends Component{
                     <button className="delete-checklist" onClick={this.deleteCheckList}>&#128465;</button>
                     </div>
                     <div>
-                         {this.state.checkItems.map(item => (<CheckListItem item={item} 
+                         {this.props.list.checkItems.map(item => (<CheckListItem item={item} 
                          idCard={this.props.list.idCard} 
-                         deleteCheckListItem={this.deleteCheckListItem}
-                        updateCheckListItem={this.updateCheckListItem}
+                         deleteCheckListItem={this.props.deleteCheckListItem}
+                        updateCheckListItem={this.props.updateCheckListItem}
                         />))}
                         <form onSubmit={this.addItemToCheckList}>
                             <input className="add-checklist-item" value={this.state.newItem} onChange={this.addItem} placeholder="+ add an item to your checklist"></input>
