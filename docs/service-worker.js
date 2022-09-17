@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/trello-todo-list/docs/precache-manifest.0d5ac3505a34b381c02e49e3137c1822.js"
+  "/trello-todo-list/precache-manifest.f16eee35b263b5aee51bb5704df8c182.js"
 );
 
 workbox.clientsClaim();
@@ -28,7 +28,7 @@ self.__precacheManifest = [].concat(self.__precacheManifest || []);
 workbox.precaching.suppressWarnings();
 workbox.precaching.precacheAndRoute(self.__precacheManifest, {});
 
-workbox.routing.registerNavigationRoute("/trello-todo-list/docs/index.html", {
+workbox.routing.registerNavigationRoute("/trello-todo-list/index.html", {
   
   blacklist: [/^\/_/,/\/[^/]+\.[^/]+$/],
 });

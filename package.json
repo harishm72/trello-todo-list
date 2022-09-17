@@ -1,6 +1,6 @@
 {
   "name": "trello-project",
-  "homepage": "/trello-todo-list/docs/",
+  "homepage": "/trello-todo-list/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
