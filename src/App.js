@@ -95,22 +95,24 @@ class App extends Component {
     return (
       <div style={bgimage} className="App">
         <Header />  
-        <Board name={name} 
-        boardID={this.state.boardId} 
-        lists={this.state.lists} 
-        addNewList={this.addNewList} 
-        deleteList={this.deleteList}
-        checkList={this.checkList}
+        <Board
+          name={name} 
+          boardID={this.state.boardId} 
+          lists={this.state.lists} 
+          addNewList={this.addNewList} 
+          deleteList={this.deleteList}
+          checkList={this.checkList}
         />
-        <Modal show={this.state.modalShow} 
-        children={this.state.modalChildren} 
-        cardTitle={this.state.cardTitle}
-        close={this.close}
-        addCheckList={this.addCheckList}
-        deleteCheckList={this.deleteCheckList}
-        addItemToCheckList={this.addItemToCheckList}
-        deleteCheckListItem={this.deleteCheckListItem}
-        updateCheckListItem={this.updateCheckListItem}
+        <Modal
+          show={this.state.modalShow} 
+          children={this.state.modalChildren} 
+          cardTitle={this.state.cardTitle}
+          close={this.close}
+          addCheckList={this.addCheckList}
+          deleteCheckList={this.deleteCheckList}
+          addItemToCheckList={this.addItemToCheckList}
+          deleteCheckListItem={this.deleteCheckListItem}
+          updateCheckListItem={this.updateCheckListItem}
         />
       </div>
     );

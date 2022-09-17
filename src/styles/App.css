@@ -1,17 +1,17 @@
 body::-webkit-scrollbar {
   width: 1em;
 }
-button:hover{
+button:hover {
   cursor: pointer;
 }
 body::-webkit-scrollbar-track {
-  box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
-  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
 }
 
 body::-webkit-scrollbar-thumb {
-background-color: darkgrey;
-outline: 1px solid slategrey;
+  background-color: darkgrey;
+  outline: 1px solid slategrey;
 }
 
 /* modal css */
@@ -19,9 +19,9 @@ outline: 1px solid slategrey;
   background: lightgrey;
   border: 1px solid #d0cccc;
   border-radius: 4px;
-  box-shadow: 0 5px 8px 0 rgba(0,0,0,0.2), 0 7px 20px 0 rgba(0,0,0,0.17);
-  margin:0 auto;
-  transition: all .8s;
+  box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 7px 20px 0 rgba(0, 0, 0, 0.17);
+  margin: 0 auto;
+  transition: all 0.8s;
   width: 60%;
 }
 
@@ -51,7 +51,7 @@ outline: 1px solid slategrey;
 }
 
 .close-modal-btn {
-  color:black;
+  color: black;
   cursor: pointer;
   float: right;
   font-size: 30px;
@@ -62,7 +62,8 @@ outline: 1px solid slategrey;
   color: black;
 }
 
-.btn-cancel, .btn-continue {
+.btn-cancel,
+.btn-continue {
   background: coral;
   border: none;
   color: white;
@@ -98,36 +99,34 @@ outline: 1px solid slategrey;
 /* modal css ends here */
 
 .App {
-  overflow: 'hidden';
-  background-position: 50% center ;
-  height: -webkit-fill-available;
-  width: -webkit-fill-available;
+  overflow: hidden;
+  background-position: right;
 }
-.app-header{
-  background: rgba(0,0,0,.35);
+.app-header {
+  background: rgba(0, 0, 0, 0.35);
   height: 2.5em;
   text-align: center;
 }
-.board-header{
-  background: rgba(0,0,0,.24);
+.board-header {
+  background: rgba(0, 0, 0, 0.24);
   margin-top: 0.5em;
   height: 2.5em;
 }
-.board-name{
+.board-name {
   text-align: left;
   font-size: 24px;
   color: white;
 }
-.app-logo{
+.app-logo {
   width: 6%;
   margin: 6px;
 }
-.boardContent{
+.boardContent {
   display: flex;
   position: absolute;
   margin: 4px;
 }
-.board-cards{
+.board-cards {
   background-color: #dfe3e6;
   border-radius: 4px;
   width: 272px;
@@ -139,18 +138,20 @@ outline: 1px solid slategrey;
   vertical-align: top;
   white-space: nowrap;
 }
-.add-scroll{
+.add-scroll {
   overflow-y: auto;
   max-height: 380px;
 }
-.list-head:hover, .card:hover{
+.list-head:hover,
+.card:hover {
   cursor: pointer;
 }
-.list-head:hover .delete-list, .card:hover .delete-card{
+.list-head:hover .delete-list,
+.card:hover .delete-card {
   visibility: visible;
   cursor: pointer;
 }
-.card{
+.card {
   padding: 8px;
   margin: 8px 0;
   height: auto;
@@ -158,39 +159,40 @@ outline: 1px solid slategrey;
   justify-content: space-between;
   background-color: white;
   border-radius: 4px;
-  box-shadow: 0 1px 0 rgba(9,45,66,.25);
+  box-shadow: 0 1px 0 rgba(9, 45, 66, 0.25);
 }
-.card-name{
+.card-name {
   margin: 0;
 }
-.add-new-list:hover, .add-new-card:hover{
+.add-new-list:hover,
+.add-new-card:hover {
   text-decoration: underline;
   cursor: pointer;
 }
-.list-head{
+.list-head {
   display: flex;
   justify-content: space-between;
 }
-.new-list{
+.new-list {
   padding: 0;
   width: 256px;
   border: none;
   font-size: medium;
   border-radius: 4px;
-  color: rgb(255,255,255, 0.7);
-  background-color: rgb(0,0,0, 0.1);
+  color: rgb(255, 255, 255, 0.7);
+  background-color: rgb(0, 0, 0, 0.1);
 }
-.add-new-list{
+.add-new-list {
   padding: 0;
   width: -webkit-fill-available;
   height: 36px;
   border: none;
   font-size: medium;
   border-radius: 4px;
-  color: rgb(255,255,255, 0.7);
-  background-color: rgb(0,0,0, 0.5);
+  color: rgb(255, 255, 255, 0.7);
+  background-color: rgb(0, 0, 0, 0.5);
 }
-.add-new-card{
+.add-new-card {
   width: -webkit-fill-available;
   border: none;
   font-size: medium;
@@ -199,18 +201,21 @@ outline: 1px solid slategrey;
   text-align: left;
   color: #6b808c;
 }
-.new-list-form , .new-card-form{
+.new-list-form,
+.new-card-form {
   display: flex;
   flex-wrap: wrap;
   height: 64px;
   margin: 8px;
 }
-.new-list-name, .new-card-name{
+.new-list-name,
+.new-card-name {
   width: -webkit-fill-available;
   height: 2em;
 }
 
-.new-list-add, .new-card-add{
+.new-list-add,
+.new-card-add {
   background-color: green;
   color: white;
   border: none;
@@ -218,24 +223,26 @@ outline: 1px solid slategrey;
   margin: 0 8px;
   height: 1.5em;
 }
-.new-list-close, .new-card-close{
+.new-list-close,
+.new-card-close {
   color: white;
   background-color: green;
   border: none;
   border-radius: 4px;
   align-self: baseline;
 }
-.add-card{
-  padding-top: 0.5em; 
+.add-card {
+  padding-top: 0.5em;
 }
-.add-card-button{
+.add-card-button {
   background-color: transparent;
   border: none;
 }
-.add-card-button:hover{
+.add-card-button:hover {
   text-decoration: underline;
 }
-.delete-list, .delete-card{
+.delete-list,
+.delete-card {
   height: fit-content;
   color: white;
   background-color: transparent;
@@ -244,7 +251,7 @@ outline: 1px solid slategrey;
   visibility: hidden;
   font-size: 1em;
 }
-.card-title{
+.card-title {
   margin: 0;
   font-size: 1sem;
   max-width: 200px;
@@ -252,48 +259,50 @@ outline: 1px solid slategrey;
   white-space: initial;
 }
 
-.check-list{
+.check-list {
   margin: 1em 0;
 }
-.check-list-item{
+.check-list-item {
   display: flex;
   margin: 8px;
 }
-.check-list-item-name{
+.check-list-item-name {
   margin: 0;
   font-size: 1em;
 }
-.check-list-checkbox{
+.check-list-checkbox {
   width: 16px;
   height: 16px;
 }
-.add-check-list{
+.add-check-list {
   height: 24px;
   border: none;
-  background-color: rgb(0,0,0,0.1);
+  background-color: rgb(0, 0, 0, 0.1);
   color: black;
   border-radius: 8px;
 }
-.checklist-head{
+.checklist-head {
   display: flex;
   justify-content: space-between;
 }
-.checklist-name{
+.checklist-name {
   margin: 0;
 }
-.add-checklist-item{
+.add-checklist-item {
   border: none;
   background-color: lightgray;
   width: 90%;
   height: 1.25em;
   font-size: 1em;
 }
-.delete-checklist{
+
+.delete-checklist {
   background-color: transparent;
   border: none;
   font-size: 16px;
 }
-.delete-checklist-item{
+
+.delete-checklist-item {
   position: fixed;
   right: 16px;
   background-color: transparent;
